@@ -7,7 +7,9 @@
 5. For more option with this program, type: ./oss -h
 6. Few examples:
 	- ./oss -h : print out the help page and exit.
-	- ./oss -l : the log file used (default is log.txt).
+	- ./oss -t : use -t command followed by an argument to change the max run time
+
+
 
 
 
