@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
 	//--------------------------------------------------
 	/* =====Options===== */
 	int opt;
-	while((opt = getopt(argc, argv, "hl:dta:")) != -1)
+	while((opt = getopt(argc, argv, "hl:dtm:")) != -1)
 	{
 		switch(opt)
 		{
@@ -104,7 +104,7 @@ int main(int argc, char *argv[])
 				printf("	-l filename  : the log file used (default is fifolog.dat).\n");
 				printf("	-d           : turn on debug mode (default is off). Beware, result will be different and inconsistent.\n");
 				printf("	-t           : display result in the terminal as well (default is off).\n");
-				printf("	-a number    : 0 is using FIFO algorithm, while 1 is using LRU algorithm (default is 0).\n");
+				printf("	-m number    : 0 is using FIFO algorithm, while 1 is using LRU algorithm (default is 0).\n");
 				exit(EXIT_SUCCESS);
 
 			case 'l':
@@ -121,7 +121,7 @@ int main(int argc, char *argv[])
 				isDisplayTerminal = true;
 				break;
 
-			case 'a':
+			case 'm':
 				algorithm_choice = atoi(optarg);
 				algorithm_choice = (algorithm_choice < 0 || algorithm_choice > 1) ? 0 : algorithm_choice;
 				if(algorithm_choice == 1)
