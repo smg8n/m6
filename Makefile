@@ -1,22 +1,33 @@
-CC = gcc
-CFLAGS = -g
-LDFLAGS = -g
-BIN_NATIVE = oss
-BIN_TARGET = usr
-OBJ_NATIVE = oss.o
-OBJ_TARGET = usr.o
+CC         = gcc
+CFLAGS     = -Wall -g
 
-.SUFFIXES:
-.SUFFIXES: .c .o .h
+STANDARD   = standardlib.h constant.h shared.h
+SRC        = helper.h queue.h linklist.h
+MASTER_SRC = oss.c
+USER_SRC   = user.c
 
-all: oss usr
-$(BIN_NATIVE): $(OBJ_NATIVE)
-	$(CC) $(LDFLAGS) -o $(BIN_NATIVE) $(OBJ_NATIVE) -lpthread
-$(BIN_TARGET): $(OBJ_TARGET)
-	$(CC) $(LDFLAGS) -o $(BIN_TARGET) $(OBJ_TARGET) -lpthread
-$(OBJ_NATIVE): oss.c
-	$(CC) $(CFLAGS) -c oss.c shmem.h
-$(OBJ_TARGET): usr.c
-	$(CC) $(CFLAGS) -c usr.c shmem.h
+OBJ        = helper.o queue.o linklist.o
+MASTER_OBJ = $(MASTER_SRC:.c=.o)
+USER_OBJ   = $(USER_SRC:.c=.o)
+
+MASTER     = oss
+USER       = user
+
+OUTPUT    = $(MASTER) $(USER)
+all: $(OUTPUT)
+
+
+%.o: %.c $(STANDARD) $(SRC)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(MASTER): $(MASTER_OBJ) $(OBJ)
+	$(CC) $(CFLAGS) $(MASTER_OBJ) $(OBJ) -o $(MASTER)
+
+$(USER): $(USER_OBJ)
+	$(CC) $(CFLAGS) $(USER_OBJ) -o $(USER)
+
+
+.PHONY: clean
 clean:
-	/bin/rm -f *.o $(BIN_NATIVE) $(BIN_TARGET)
+	/bin/rm -f $(OUTPUT) *.o *.dat
+
