@@ -10,6 +10,7 @@
 #include <sys/types.h>
 #include <string.h>
 #include <errno.h>
+#include <time.h>
 
 #include "shmem.h"
 #include "queue.h"
@@ -38,7 +39,6 @@ int main(int argc, char *argv[])
     sminit();
     msginit();
 
-	int iter;
 	int count = 0;
 	int proc = atoi(argv[1]);
 	int sche = atoi(argv[2]);
@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
 					msgsnd(tooss, &msg, sizeof(msg), 0);
 
 
-					sprintf(msg.message, "%i", memaddr);
+					sprintf(msg.message, "%f", memaddr);
 					msgsnd(tooss, &msg, sizeof(msg), 0);
 
 					while(1)
@@ -177,7 +177,7 @@ int main(int argc, char *argv[])
 					msg.msgtype = proc;
 					msgsnd(tooss, &msg, sizeof(msg), 0);
 					
-					sprintf(msg.message, "%i", memaddr);
+					sprintf(msg.message, "%f", memaddr);
 					msgsnd(tooss, &msg, sizeof(msg), 0);
 
 					while(1)

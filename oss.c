@@ -11,6 +11,7 @@
 #include <sys/time.h>
 #include <sys/types.h>
 #include <sys/msg.h>
+#include <time.h>
 
 #include "queue.h"
 #include "shmem.h"
@@ -140,13 +141,10 @@ return 0;
 void manager()
 {
 	int status;
-	int msglen;
-	int temp;
-    int ecount = 0;
+        int ecount = 0;
 	int acount = 0;
 
 	pid_t pids[PCAP];
-	pid_t cpid;
 	pid_t tpid;
 
 	simclock forktime = {0, 0};
@@ -189,7 +187,7 @@ void manager()
 			int seat = findaseat() + 1;
 			if(seat - 1 > -1)
 			{
-				pids[seat - 1] = fork();
+	                        pid_t cpid = pids[seat - 1] = fork();
 				if(pids[seat - 1] == 0)
 				{
 					overlay(seat, scheme);
