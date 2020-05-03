@@ -16,7 +16,7 @@
 #include "queue.h"
 #include "shmem.h"
 const int pagesize = 1;
-const int procsize = 18;
+const int procsize = 32;
 const int memsize = 256;
 struct 
 {
