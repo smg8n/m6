@@ -901,7 +901,7 @@ void cleanUp()
 	discardShm(shmclock_shmid, shmclock_shmptr, "shmclock", exe_name, "Master");
 
 	//Delete semaphore
-	if(semid > 0)
+	if(semid != -1)
 	{
 		semctl(semid, 0, IPC_RMID);
 	}
