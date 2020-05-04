@@ -126,7 +126,7 @@ int main(int argc, char *argv[])
 				algorithm_choice = (algorithm_choice < 0 || algorithm_choice > 1) ? 0 : algorithm_choice;
 				if(algorithm_choice == 1)
 				{
-					strncpy(log_file, "lrulog.dat", 255);
+					strncpy(log_file, "llog.txt", 255);
 				}
 				break;
 
