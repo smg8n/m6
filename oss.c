@@ -14,7 +14,7 @@ static char *exe_name;
 static int percentage = 0;
 static char log_file[256] = "log.txt";
 static char isDebugMode = false;
-static char isDisplayTerminal = false;
+static char isDisplayTerminal = true;
 static int algorithm_choice = 0;
 static key_t key;
 static Queue *queue;
