@@ -783,7 +783,7 @@ void masterHandler(int signum)
 	printWrite(fpw, "- Number of forking during this execution: %d\n", fork_number);
 	printWrite(fpw, "- Final simulation time of this execution: %d.%d\n", shmclock_shmptr->second, shmclock_shmptr->nanosecond);
 	printWrite(fpw, "- Number of memory accesses: %d\n", memoryaccess_number);
-	printWrite(fpw, "- Number of memory accesses per nanosecond: %f memory/second\n", mem_p_sec);
+	printWrite(fpw, "- Number of memory accesses per second: %f memory/second\n", mem_p_sec);
 	printWrite(fpw, "- Number of page faults: %d\n", pagefault_number);
 	printWrite(fpw, "- Number of page faults per memory access: %f pagefault/access\n", pg_f_p_mem);
 	printWrite(fpw, "- Average memory access speed: %f ms/n\n", avg_m);
