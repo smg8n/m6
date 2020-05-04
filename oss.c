@@ -75,7 +75,23 @@ char *getPCBT(ProcessControlBlock *pcbt);
 void initPCB(ProcessControlBlock *pcb, int index, pid_t pid);
 /* -------------------------------------------------- */
 
-
+void printAllFrames(){
+	FILE *fp;
+	fp = fopen(outputFile,"a");
+       // fprintf(fp,"\nCurrent memory layout at time %d.%d is:\n",clk->sec,clk->nano_sec);
+        fprintf(fp,"\t Occupied \t  RefByte \t DirtyBit\n");
+        int i = 0;
+        while (i < 256){
+                if(frame[i].occupied == 0){
+                fprintf(fp,"Frame %d: \tNo\t\t%d\t\t%d\n",i,frame[i].referenceByte,frame[i].dirtyBit);
+                }else{
+                fprintf(fp,"Frame %d: \tYes\t\t%d\t\t%d\n",i,frame[i].referenceByte,frame[i].dirtyBit);
+                }
+		i += 1;
+        }
+        fprintf(fp,"\n");
+        fclose(fp);
+}
 
 /* ====================================================================================================
 MAIN
